@@ -3,6 +3,8 @@
 import pygame
  
 # Initialize the game engine
+import pygame as pygame
+
 pygame.init()
  
 # Define the colors we will use in RGB format
@@ -29,7 +31,7 @@ while not done:
     clock.tick(10)
      
     # Main Event Loop
-    for eventin pygame.event.get():# User did something
+    for event in pygame.event.get():# User did something
         if event.type == pygame.QUIT:# If user clicked close
             done=True # Flag that we are done so we exit this loop
   
