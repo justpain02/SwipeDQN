@@ -1,58 +1,70 @@
 # Import a library of functions called 'pygame'
 
 import pygame
- 
-# Initialize the game engine
+# 1. 게임 초기화
 pygame.init()
- 
-# Define the colors we will use in RGB format
-BLACK= ( 0,  0,  0)
-WHITE= (255,255,255)
-BLUE = ( 0,  0,255)
-GREEN= ( 0,255,  0)
-RED  = (255,  0,  0)
- 
-# Set the height and width of the screen
-size  = [400,300]
-screen= pygame.display.set_mode(size)
-  
-pygame.display.set_caption("Game Title")
-  
-#Loop until the user clicks the close button.
-done= False
-clock= pygame.time.Clock()
-  
-while not done:
-  
-    # This limits the while loop to a max of 10 times per second.
-    # Leave this out and we will use all CPU we can.
-    clock.tick(10)
-     
-    # Main Event Loop
-    for eventin pygame.event.get():# User did something
-        if event.type == pygame.QUIT:# If user clicked close
-            done=True # Flag that we are done so we exit this loop
-  
-    # All drawing code happens after the for loop and but
-    # inside the main while done==False loop.
-      
-    # Clear the screen and set the screen background
-    screen.fill(WHITE)
- 
-    '''
-    Your Work.....
-    '''
-    pygame.draw.polygon(screen, GREEN, [[30,150], [125,100], [220,150]],5)
-    pygame.draw.polygon(screen, GREEN, [[30,150], [125,100], [220,150]],0)
-    pygame.draw.lines(screen, RED,False, [[50,150], [50,250], [200,250], [200,150]],5)
-    pygame.draw.rect(screen, BLACK, [75,175,75,50],5)
-    pygame.draw.rect(screen, BLUE, [75,175,75,50],0)
-    pygame.draw.line(screen, BLACK, [112,175], [112,225],5)
-    pygame.draw.line(screen, BLACK, [75,200], [150,200],5)
- 
-    # Go ahead and update the screen with what we've drawn.
-    # This MUST happen after all the other drawing commands.
+
+# 2. 게임창 옵션 설정
+size = [400, 700]
+screen = pygame.display.set_mode(size)
+
+title = "My Game"
+pygame.display.set_caption(title)
+
+# 3. 게임 내 필요한 설정
+clock = pygame.time.Clock()
+
+class obj:
+    def __init__(self):
+        self.x = 0
+        self.y = 0
+    def put_img(self, address):
+        if address[-3:] == "png":
+            self.img = pygame.image.load(address).convert_alpha()
+        else :
+            self.img = pygame.image.load(address)
+        self.sx, self.sy = self.img.get_size()
+    def change_size(self, sx, sy):
+        self.img = pygame.transform.scale(self.img, (sx, sy))
+        self.sx, self.sy = self.img.get_size()
+    def show(self):
+        screen.blit(self.img, (self.x,self.y))
+
+ss = obj()
+ss.put_img("D:/temp/ss.png")
+ss.change_size(50,80)
+ss.x = round(size[0]/2- ss.sx/2)
+ss.y = size[1] -ss.sy - 15
+
+
+black = (0,0,0)
+white = (255,255,255)
+k = 0
+
+# 4. 메인 이벤트
+SB = 0
+while SB == 0:
+
+    # 4-1. FPS 설정
+    clock.tick(2)
+
+    # 4-2. 각종 입력 감지
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            SB = 1
+
+    # 4-3. 입력, 시간에 따른 변화
+    k += 1
+    if k % 2 == 0:
+        color = black
+    else:
+        color = white
+
+    # 4-4. 그리기
+    screen.fill(color)
+
+    # 4-5. 업데이트
     pygame.display.flip()
-  
-# Be IDLE friendly
+
+# 5. 게임 종료
 pygame.quit()
