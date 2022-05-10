@@ -13,12 +13,37 @@ pygame.display.set_caption(title)
 # 3. 게임 내 필요한 설정
 clock = pygame.time.Clock()
 
-ss = pygame.image.load("C:/Users/jjojj/Desktop/Ai project/ball.png").convert_alpha()
-#ss는 기본 공임
-ss = pygame.transform.scale(ss,(15,15))
-ss_sx,ss_sy = ss.get_size()
-ss_x = round(size[0]/2)-ss_sx
-ss_y = round(size[1])-200-ss_sy
+class obj:
+    def __init__(self):
+        self.x=0
+        self.y=0
+    def put_img(self,address):
+        if address[-3:] == "png":
+            self.img = pygame.image.load(address).convert_alpha()
+        else:
+            self.img = pygame.image.load(address)
+            
+    def change_size(self,sx,sy):
+        self.img = pygame.transform.scale(self.img,(sx,sy))
+        self.sx,self.sy = self.img.get_size()
+    def show(self):
+        screen.blit(self.img,(self.x,self.y))
+
+#class 없이 이미지 속성
+#ss = pygame.image.load("C:/Users/jjojj/Desktop/Ai project/ball.png").convert_alpha()
+#ss = pygame.transform.scale(ss,(15,15))
+#ss_sx,ss_sy = ss.get_size()
+#ss_x = round(size[0]/2-ss_sx/2)
+#ss_y = round(size[1])-200-ss_sy
+
+
+#class 사용한 이미지 속성
+ss = obj()
+ss.put_img("C:/Users/jjojj/Desktop/Ai project/ball.png")
+ss.change_size(15,15)
+ss.x = round(size[0]/2-ss.sx/2)
+ss.y = round(size[1])-200-ss.sy
+
 
 black = (0,0,0)
 white = (255,255,255)
@@ -41,7 +66,7 @@ while SB == 0:
 
     # 4-4. 그리기
     screen.fill(black)
-    screen.blit(ss,(ss_x,ss_y))
+    ss.show()
 
     # 4-5. 업데이트
     pygame.display.flip()
