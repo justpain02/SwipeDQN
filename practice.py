@@ -46,7 +46,7 @@ SB = 0
 while SB == 0:
 
     # 4-1. FPS 설정
-    clock.tick(2)
+    clock.tick(60)
 
     # 4-2. 각종 입력 감지
     for event in pygame.event.get():
@@ -55,13 +55,11 @@ while SB == 0:
 
     # 4-3. 입력, 시간에 따른 변화
     k += 1
-    if k % 2 == 0:
-        color = black
-    else:
-        color = white
+
 
     # 4-4. 그리기
-    screen.fill(color)
+    screen.fill(black)
+    ss.show()
 
     # 4-5. 업데이트
     pygame.display.flip()
