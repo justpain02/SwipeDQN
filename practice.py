@@ -7,7 +7,7 @@ pygame.init()
 size = [400, 700]
 screen = pygame.display.set_mode(size)
 
-title = "My Game"
+title = "Swipe 벽돌깨기"
 pygame.display.set_caption(title)
 
 # 3. 게임 내 필요한 설정
@@ -44,6 +44,11 @@ ss.change_size(15,15)
 ss.x = round(size[0]/2-ss.sx/2)
 ss.y = round(size[1])-200-ss.sy
 
+br = obj()
+br.put_img("C:/Users/jjojj/Desktop/Ai project/brick-1.png")
+br.change_size(size[0]/7,size[1]/17)
+br.x = round(size[0]/7-ss.sx/2)
+br.y = round(size[1])-200-ss.sy
 
 black = (0,0,0)
 white = (255,255,255)
@@ -67,9 +72,14 @@ while SB == 0:
     # 4-4. 그리기
     screen.fill(black)
     ss.show()
+    br.show()
 
     # 4-5. 업데이트
     pygame.display.flip()
+
+
+
+
 
 # 5. 게임 종료
 pygame.quit()
