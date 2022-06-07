@@ -44,11 +44,29 @@ ss.change_size(15,15)
 ss.x = round(size[0]/2-ss.sx/2)
 ss.y = round(size[1])-200-ss.sy
 
-br = obj()
-br.put_img("C:/Users/jjojj/Desktop/Ai project/brick-1.png")
-br.change_size(size[0]/7,size[1]/17)
-br.x = round(size[0]/7-ss.sx/2)
-br.y = round(size[1])-200-ss.sy
+rr = obj()
+rr.put_img("C:/Users/jjojj/Desktop/Ai project/toball.png")
+rr.change_size(15,15)
+rr.x = round(size[0]/2-ss.sx/2)
+rr.y = round(size[1])-200-ss.sy+20
+
+br_11 = obj()
+br_11.put_img("C:/Users/jjojj/Desktop/Ai project/brick-1.png")
+br_11.change_size(size[0]/7,size[1]/17)
+br_11.x = round(size[0]/7-ss.sx/2)
+br_11.y = round(size[1])-500-ss.sy
+
+br_12 = obj()
+br_12.put_img("C:/Users/jjojj/Desktop/Ai project/brick-1.png")
+br_12.change_size(size[0]/7,size[1]/17)
+br_12.x = round(2*size[0]/7-ss.sx/2)
+br_12.y = round(size[1])-500-ss.sy
+
+br_21 = obj()
+br_21.put_img("C:/Users/jjojj/Desktop/Ai project/brick-1.png")
+br_21.change_size(size[0]/7,size[1]/17)
+br_21.x = round(size[0]/7-ss.sx/2)
+br_21.y = round(size[1]+size[1]/17)-500-ss.sy
 
 black = (0,0,0)
 white = (255,255,255)
@@ -65,14 +83,18 @@ while SB == 0:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             SB = 1
+        print(event)
 
     # 4-3. 입력, 시간에 따른 변화
     k += 1
 
     # 4-4. 그리기
-    screen.fill(black)
+    screen.fill(white)
     ss.show()
-    br.show()
+    rr.show()
+    br_11.show()
+    br_12.show()
+    br_21.show()
 
     # 4-5. 업데이트
     pygame.display.flip()
